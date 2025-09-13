@@ -14,7 +14,7 @@ const popup = usePopup()
 const qrScanner = useQrScanner()
 
 const handleMainButtonClick = (): void => {
-  if (popup.isVersionAtLeast('6.2')) popup.showAlert('Привет', miniApp.close)
+  if (popup.isVersionAtLeast('6.2')) popup.showAlert('Приложение сейчас закроется', miniApp.close)
   return
 }
 
