@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { Alert } from 'vue-tg'
+import { FullscreenViewport } from 'vue-tg'
 import { ExpandedViewport } from 'vue-tg'
 </script>
 
 <template>
+  <fullscreen-viewport />
   <expanded-viewport />
   <h1>You did it!</h1>
   <p>
