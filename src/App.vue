@@ -1,15 +1,25 @@
 <script setup lang="ts">
-import { usePopup } from 'vue-tg'
-import { Alert } from 'vue-tg'
-import { FullscreenViewport } from 'vue-tg'
-import { ExpandedViewport } from 'vue-tg'
-import { MainButton } from 'vue-tg'
-import { SecondaryButton } from 'vue-tg'
+import {
+  usePopup,
+  useMiniApp,
+  FullscreenViewport,
+  ExpandedViewport,
+  MainButton,
+  SecondaryButton,
+  useQrScanner,
+} from 'vue-tg'
 
+const miniApp = useMiniApp()
 const popup = usePopup()
+const qrScanner = useQrScanner()
 
 const handleMainButtonClick = (): void => {
-  if (popup.isVersionAtLeast('6.2')) popup.showAlert('Привет')
+  if (popup.isVersionAtLeast('6.2')) popup.showAlert('Привет', miniApp.close)
+  return
+}
+
+const handleSecondaryButtonClick = (): void => {
+  if (qrScanner.isVersionAtLeast('6.4')) qrScanner.show({ text: 'Отсканируйте QR' })
   return
 }
 </script>
@@ -22,8 +32,8 @@ const handleMainButtonClick = (): void => {
     Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
     documentation
   </p>
-  <main-button @click="handleMainButtonClick" text="Main button" />
-  <secondary-button text="Secondary button" />
+  <main-button @click="handleMainButtonClick" text="Закрыть приложение" />
+  <secondary-button @click="handleSecondaryButtonClick" text="Открыть QR-Сканер" />
 </template>
 
 <style scoped>
