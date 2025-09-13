@@ -4,6 +4,10 @@ import { FullscreenViewport } from 'vue-tg'
 import { ExpandedViewport } from 'vue-tg'
 import { MainButton } from 'vue-tg'
 import { SecondaryButton } from 'vue-tg'
+import { ScanQr } from 'vue-tg'
+const handleScanResult = (_data: string) => {
+  return _data
+}
 </script>
 
 <template>
@@ -14,6 +18,7 @@ import { SecondaryButton } from 'vue-tg'
     Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
     documentation
   </p>
+  <ScanQr @result="handleScanResult" />
   <main-button text="Main button" />
   <secondary-button text="Secondary button" />
   <alert message="Hello!" />
