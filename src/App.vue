@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import { usePopup } from 'vue-tg'
 import { Alert } from 'vue-tg'
 import { FullscreenViewport } from 'vue-tg'
 import { ExpandedViewport } from 'vue-tg'
 import { MainButton } from 'vue-tg'
 import { SecondaryButton } from 'vue-tg'
-import { ScanQr } from 'vue-tg'
-const handleScanResult = (_data: string) => {
-  return _data
+
+const popup = usePopup()
+
+const handleMainButtonClick = (): void => {
+  if (popup.isVersionAtLeast('6.2')) popup.showAlert('Привет')
+  return
 }
 </script>
 
@@ -18,10 +22,8 @@ const handleScanResult = (_data: string) => {
     Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
     documentation
   </p>
-  <ScanQr @result="handleScanResult" />
-  <main-button text="Main button" />
+  <main-button @click="handleMainButtonClick" text="Main button" />
   <secondary-button text="Secondary button" />
-  <alert message="Hello!" />
 </template>
 
 <style scoped>
