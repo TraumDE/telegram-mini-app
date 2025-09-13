@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import {
-  usePopup,
-  useMiniApp,
   FullscreenViewport,
   ExpandedViewport,
   MainButton,
   SecondaryButton,
   useQrScanner,
+  useHomeScreen,
 } from 'vue-tg'
 
-const miniApp = useMiniApp()
-const popup = usePopup()
 const qrScanner = useQrScanner()
+const homeScreen = useHomeScreen()
 
 const handleMainButtonClick = (): void => {
-  if (popup.isVersionAtLeast('6.2')) popup.showAlert('Приложение сейчас закроется', miniApp.close)
+  if (homeScreen.isVersionAtLeast('8.0')) homeScreen.addShortcut()
   return
 }
 
@@ -32,7 +30,7 @@ const handleSecondaryButtonClick = (): void => {
     Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
     documentation
   </p>
-  <main-button @click="handleMainButtonClick" text="Закрыть приложение" />
+  <main-button @click="handleMainButtonClick" text="Добавит окно" />
   <secondary-button @click="handleSecondaryButtonClick" text="Открыть QR-Сканер" />
 </template>
 
